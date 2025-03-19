@@ -16,8 +16,8 @@ public class ProductPage {
     private static final By productLinks = By.xpath("//div[contains(@class, 'productWrapper')]//a");
     private static final By cartButton = By.xpath("(//span[@class='btn-text'])[2]/parent::button");
     private static final By addedToCartButton = By.xpath("//button[@class='css-eb12ax']");
+    private static final By cartCount = By.xpath("//span[@class='cart-count']");
 
-    private ArrayList<WebElement> productElements;
     public static HashSet<String> productNames;
 
     public ProductPage(WebDriver driver) {
@@ -26,8 +26,8 @@ public class ProductPage {
         productNames = new HashSet<>();
     }
 
-    public void addToCart() {
-        productElements = new ArrayList<>(driver.findElements(productLinks));
+    public boolean addToCart() {
+        ArrayList<WebElement> productElements = new ArrayList<>(driver.findElements(productLinks));
 
         String productsWindow = driver.getWindowHandle();
 
@@ -56,5 +56,7 @@ public class ProductPage {
         }
 
         driver.navigate().refresh();
+
+        return Integer.parseInt(driver.findElement(cartCount).getText()) == 5;
     }
 }

@@ -13,6 +13,7 @@ public class CartPage {
     private static final By cartButton = By.xpath("//button[@id='header-bag-icon']");
     private static final By cartItems = By.xpath("//span[@data-test-id='product-name']");
     private static final By cartFrame = By.xpath("//iframe[@class='css-wlxg94']");
+    private static final By cartBack = By.xpath("//div[contains(@class, 'css-x6gbsc')]");
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
@@ -24,6 +25,7 @@ public class CartPage {
 
     public boolean verifyItems() {
         HashSet<String> itemNames = new HashSet<>();
+        boolean isMatched = true;
 
         driver.switchTo().frame(driver.findElement(cartFrame));
         ArrayList<WebElement> cartItemElements = new ArrayList<>(driver.findElements(cartItems));
@@ -34,10 +36,14 @@ public class CartPage {
 
         for (var i : itemNames) {
             if (!ProductPage.productNames.contains(i)) {
-                return false;
+                isMatched = false;
+                break;
             }
         }
 
-        return true;
+        driver.findElement(cartBack).click();
+        driver.switchTo().parentFrame();
+
+        return isMatched;
     }
 }

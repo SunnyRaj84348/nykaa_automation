@@ -1,1 +1,1 @@
-# amazon_automation
+# nykaa_automation

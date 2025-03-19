@@ -9,7 +9,8 @@ public class HomePage {
         this.driver = driver;
     }
 
-    public void navigate() {
+    public String navigate() {
         driver.get("https://www.nykaa.com");
+        return driver.getTitle();
     }
 }

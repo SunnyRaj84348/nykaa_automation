@@ -6,6 +6,7 @@
         <classes>
             <class name="nykaatest.HomeTest"/>
             <class name="nykaatest.ProductTest"/>
+            <class name="nykaatest.CartTest"/>
         </classes>
     </test>
 </suite>

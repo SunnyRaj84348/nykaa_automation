@@ -5,6 +5,7 @@
     <test name="nykaa_automation" preserve-order="true">
         <classes>
             <class name="nykaatest.HomeTest"/>
+            <class name="nykaatest.ProductTest"/>
         </classes>
     </test>
 </suite>

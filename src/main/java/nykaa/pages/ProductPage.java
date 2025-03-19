@@ -26,12 +26,12 @@ public class ProductPage {
         productNames = new HashSet<>();
     }
 
-    public boolean addToCart() {
+    public int addToCart(int productCount) {
         ArrayList<WebElement> productElements = new ArrayList<>(driver.findElements(productLinks));
 
         String productsWindow = driver.getWindowHandle();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < productCount; i++) {
             productElements.get(i).click();
 
             String currentWindow = "";
@@ -57,6 +57,6 @@ public class ProductPage {
 
         driver.navigate().refresh();
 
-        return Integer.parseInt(driver.findElement(cartCount).getText()) == 5;
+        return Integer.parseInt(driver.findElement(cartCount).getText());
     }
 }

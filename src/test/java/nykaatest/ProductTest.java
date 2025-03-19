@@ -9,7 +9,8 @@ public class ProductTest extends Base {
     @Test
     public void testProduct() {
         ProductPage productPage = new ProductPage(driver);
-        boolean isAdded = productPage.addToCart();
-        Assert.assertTrue(isAdded);
+
+        int cartCount = productPage.addToCart(5);
+        Assert.assertEquals(cartCount, 5);
     }
 }

@@ -15,4 +15,9 @@ public class ExampleTest extends Base {
     public void test2() {
         Assert.assertTrue(1 == 1);
     }
+
+    @Test(priority = 3)
+    public void test3() {
+        Assert.assertTrue(1 == 1);
+    }
 }

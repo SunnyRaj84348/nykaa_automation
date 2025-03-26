@@ -20,4 +20,9 @@ public class ExampleTest extends Base {
     public void test3() {
         Assert.assertTrue(1 == 1);
     }
+
+    @Test(priority = 3)
+    public void test4() {
+        Assert.assertTrue("A".equals('A'));
+    }
 }

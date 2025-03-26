@@ -15,13 +15,17 @@ public class ProductPage {
 
     private static final By productLinks = By.xpath("//div[contains(@class, 'productWrapper')]//a");
     private static final By cartButton = By.xpath("(//span[@class='btn-text'])[2]/parent::button");
-    private static final By addedToCartButton = By.xpath("//button[@class='css-eb12ax']");
+    private static final By addedToCartButton = By.xpath("//button[contains(text(),'Added to Bag')]");
     private static final By cartCount = By.xpath("//span[@class='cart-count']");
 
     public static HashSet<String> productNames;
 
+    WebDriverWait wait;
+
     public ProductPage(WebDriver driver) {
         this.driver = driver;
+
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         productNames = new HashSet<>();
     }
@@ -44,10 +48,11 @@ public class ProductPage {
 
             driver.switchTo().window(currentWindow);
 
-            productNames.add(driver.findElement(By.xpath("//h1")).getText().trim().split("\n")[0]);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(cartButton));
             driver.findElement(cartButton).click();
 
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            productNames.add(driver.findElement(By.xpath("//h1")).getText().trim().split("\n")[0]);
+
             wait.until(ExpectedConditions.presenceOfElementLocated(addedToCartButton));
 
             driver.close();

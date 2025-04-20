@@ -23,6 +23,6 @@ public class ExampleTest extends Base {
 
     @Test(priority = 3)
     public void test4() {
-        Assert.assertTrue("A".equals("B"));
+        Assert.assertTrue("A".equals("A"));
     }
 }

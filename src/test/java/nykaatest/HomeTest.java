@@ -21,4 +21,10 @@ public class HomeTest extends Base {
         String searchTitle = homePage.search("Shoes");
         Assert.assertEquals(searchTitle, "Shoes");
     }
+
+    @Test(priority = 3)
+    public void testSearch2() {
+        String searchTitle = homePage.search("Shoes");
+        Assert.assertEquals(searchTitle, "Shoes");
+    }
 }
